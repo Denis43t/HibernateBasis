@@ -24,4 +24,18 @@ public class ClientCrudService {
             transaction.commit();
         }
     }
+
+    public Client findById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.get(Client.class, id);
+        }
+    }
+
+    public void update(Client client) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.update(client);
+            transaction.commit();
+        }
+    }
 }

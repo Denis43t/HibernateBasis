@@ -25,4 +25,17 @@ public class PlanetCrudService {
             transaction.commit();
         }
     }
+    public Planet findById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.get(Planet.class, id);
+        }
+    }
+
+    public void update(Planet planet) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.update(planet);
+            transaction.commit();
+        }
+    }
 }
